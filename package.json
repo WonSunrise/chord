@@ -1,0 +1,99 @@
+{
+    "name": "chord",
+    "version": "0.2.40",
+    "description": "Chord - A Modern Music Player",
+    "homepage": "https://github.com/PeterDing/chord",
+    "main": "./out/main.js",
+    "author": "Peter Ding <dfhayst@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "compile": "gulp compile",
+        "test": "mocha --delay",
+        "start": "ELECTRON_DEV=true electron ./out/main.js",
+        "dist": "electron-builder --win --mac --linux deb",
+        "dist:mac": "electron-builder --mac",
+        "dist:win": "electron-builder --win",
+        "dist:linux": "electron-builder --linux deb pacman AppImage rpm",
+        "pack": "electron-builder --dir",
+        "postinstall": "electron-rebuild -f -w better-sqlite3 && electron-rebuild -f -w big-integer"
+    },
+    "build": {
+        "productName": "chord",
+        "asar": false,
+        "appId": "chord.music",
+        "compression": "maximum",
+        "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+        "electronVersion": "18.2.3",
+        "linux": {
+            "target": [
+                "deb",
+                "packman",
+                "AppImage"
+            ],
+            "category": "Music",
+            "executableName": "chord"
+        },
+        "deb": {
+            "compression": "gz"
+        },
+        "win": {
+            "target": "nsis"
+        },
+        "nsis": {
+            "oneClick": false,
+            "perMachine": true,
+            "allowToChangeInstallationDirectory": true
+        },
+        "files": [
+            "./out/**/*",
+            "!**/*.ts",
+            "!**/*.tsx"
+        ]
+    },
+    "dependencies": {
+        "@electron/remote": "^2.0.8",
+        "axios": "^0.27.2",
+        "axios-cookiejar-support": "^4.0.1",
+        "better-sqlite3": "^7.5.1",
+        "big-integer": "^1.6.51",
+        "cheerio": "^1.0.0-rc.10",
+        "crypto-js": "^4.1.1",
+        "debug": "^4.3.4",
+        "glob-parent": "^6.0.2",
+        "howler": "^2.2.3",
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0",
+        "react-redux": "^8.0.1",
+        "redux": "^4.2.0",
+        "redux-thunk": "^2.4.1",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.6",
+        "tough-cookie": "^4.0.0"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.5.0",
+        "@types/cheerio": "^0.22.31",
+        "@types/crypto-js": "^4.1.1",
+        "@types/debug": "^4.1.7",
+        "@types/howler": "^2.2.7",
+        "@types/mocha": "^9.1.1",
+        "@types/react": "^18.0.9",
+        "@types/react-dom": "^18.0.4",
+        "@types/react-redux": "^7.1.24",
+        "@types/request": "^2.48.8",
+        "@types/request-promise": "^4.1.48",
+        "@types/tough-cookie": "^4.0.2",
+        "electron": "^18.2.3",
+        "electron-builder": "^23.0.3",
+        "electron-rebuild": "^3.2.7",
+        "gulp": "^4.0.2",
+        "gulp-clean": "^0.4.0",
+        "gulp-filter": "^7.0.0",
+        "gulp-typescript": "^6.0.0-alpha.1",
+        "mocha": "^10.0.0",
+        "requirejs": "^2.3.6",
+        "rimraf": "^3.0.2",
+        "tslint": "^6.1.3",
+        "typescript": "^4.6.4"
+    }
+}
