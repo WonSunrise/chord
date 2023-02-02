@@ -1,0 +1,13 @@
+node_modules/
+experiment/
+out/
+.tern-port
+yarn-error.log
+
+release/
+dist/
+ubuntu-docker/
+
+*login.test.ts
+
+.DS_Store
